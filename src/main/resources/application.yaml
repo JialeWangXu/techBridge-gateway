@@ -1,0 +1,60 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+spring:
+  application:
+    name: techbridge-gateway
+  profiles:
+    # Activa el perfil de desarrollo por defecto
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  output:
+    #generar logs con color en consola
+    ansi:
+      enabled: ALWAYS
+  cloud:
+    gateway:
+      routes:
+        - id: techbridge-user
+          uri: lb://techbridge-user
+          predicates:
+            - Path=/api/techbridge-user/**
+          filters:
+            - StripPrefix=2
+      globalcors:
+        # para no bloquear las llamadas de front por la politica de CORS
+        corsConfigurations:
+          # esta regla se aplica a todas las rutas que pasen por el Gateway
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200" # solo permitir las llamadas de mi front
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+
+management:
+  endpoints:
+    web:
+      # solo exponemos la llamada de health check
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    root: WARN
+    es.techbridge: DEBUG
+    org.springframework.cloud.gateway: WARN
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

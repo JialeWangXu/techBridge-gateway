@@ -1,0 +1,19 @@
+services:
+  techbridge-gateway:
+    build: .
+    image: techbridge-gateway:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://host.docker.internal:8761/eureka/
+    networks:
+      - techBridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  techBridge:
+    driver: bridge
+
+#> docker compose up --build -d
