@@ -20,6 +20,18 @@ spring:
             - Path=/api/techbridge-user/**
           filters:
             - StripPrefix=2
+        - id: techbridge-helprequest
+          uri: lb://techbridge-helprequest
+          predicates:
+            - Path=/api/techbridge-helprequest/**
+          filters:
+            - StripPrefix=2
+        - id: techbridge-aitutorial
+          uri: lb://techbridge-aitutorial
+          predicates:
+            - Path=/api/techbridge-aitutorial/**
+          filters:
+            - StripPrefix=2
       globalcors:
         # para no bloquear las llamadas de front por la politica de CORS
         corsConfigurations:
