@@ -1,6 +1,0 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${EUREKA_USER}:${EUREKA_PASSWORD}@techbridge-eureka:8761/eureka/
-  instance:
-    prefer-ip-address: true
