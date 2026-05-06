@@ -38,7 +38,8 @@ spring:
           # esta regla se aplica a todas las rutas que pasen por el Gateway
           '[/**]':
             allowedOrigins:
-              - "http://localhost:4200" # solo permitir las llamadas de mi front
+              - "http://localhost:4200"
+              - "https://techbridge.es"
             allowedMethods:
               - GET
               - POST
