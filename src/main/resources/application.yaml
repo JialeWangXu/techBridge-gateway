@@ -39,7 +39,7 @@ spring:
           '[/**]':
             allowedOrigins:
               - "http://localhost:4200"
-              - "https://techbridge.es"
+              - "http://techbridge-front.s3-website-eu-west-1.amazonaws.com"
             allowedMethods:
               - GET
               - POST
