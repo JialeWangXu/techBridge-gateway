@@ -10,7 +10,7 @@
     </parent>
     <groupId>es.techbridge</groupId>
     <artifactId>techbridge-gateway</artifactId>
-    <version>1.2.2-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
     <name>techbridge-gateway</name>
     <description>techbridge-gateway</description>
     <url/>
@@ -56,6 +56,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j-core</artifactId>
+            <version>8.10.1</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
