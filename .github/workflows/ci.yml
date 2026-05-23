@@ -1,4 +1,4 @@
-name: CI goa-gateway
+name: CI TechBridge-gateway
 on:
   push:
     branches:
