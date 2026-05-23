@@ -81,8 +81,8 @@ public class RateLimitFilter implements WebFilter {
 
         if (key.contains("/auth/register")) {
             limit = Bandwidth.builder()
-                .capacity(3)
-                .refillIntervally(3, Duration.ofMinutes(1))
+                .capacity(5)
+                .refillIntervally(5, Duration.ofMinutes(1))
                 .build();
 
         } else {
@@ -104,16 +104,14 @@ public class RateLimitFilter implements WebFilter {
                 .getFirst("X-Forwarded-For");
 
         if (xForwardedFor != null && !xForwardedFor.isEmpty()) {
-            return xForwardedFor.split(",")[0];
+            return xForwardedFor.split(",")[0].trim();
         }
 
-        if (exchange.getRequest().getRemoteAddress() == null) {
-            return "unknown";
+        if (exchange.getRequest().getRemoteAddress() != null &&
+                exchange.getRequest().getRemoteAddress().getAddress() != null) {
+            return exchange.getRequest().getRemoteAddress().getAddress().getHostAddress();
         }
 
-        return exchange.getRequest()
-                .getRemoteAddress()
-                .getAddress()
-                .getHostAddress();
+        return "unknown";
     }
 }
