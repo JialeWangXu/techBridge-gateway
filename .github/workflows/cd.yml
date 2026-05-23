@@ -1,4 +1,4 @@
-name: CD - GitHub Packages
+name: CD - TechBridge Gateway
 on:
   push:
     branches: [main]
